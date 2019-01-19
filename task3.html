@@ -13,11 +13,27 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" style="margin:10px">
         <tabs value="name1">
-            <tab-pane icon="ios-unlock" label="login" name="name1">login</tab-pane>
-            <tab-pane icon="ios-people" label="users" name="name2">users</tab-pane>
-            <tab-pane icon="md-person-add" label="new user" name="name3">new user</tab-pane>
+            <tab-pane icon="ios-unlock" label="login" name="name1">
+                <i-form style="width:50%">
+                    <form-item prop="user">
+                        <i-input type="text" v-model="userInfo.username" placeholder="Username">
+                            <icon type="ios-person-outline" slot="prepend"></icon>
+                        </i-input>
+                    </form-item>
+                    <form-item prop="password">
+                        <i-input type="password" v-model="userInfo.password" placeholder="Password">
+                            <icon type="ios-lock-outline" slot="prepend"></icon>
+                        </i-input>
+                    </form-item>
+                    <form-item>
+                        <i-button type="primary" @click="submitForm()">Signin</i-button>
+                    </form-item>
+                </i-form>            
+            </tab-pane>
+            <tab-pane v-bind:disabled="! isLogedIn" icon="ios-people" label="users" name="name2">users</tab-pane>
+            <tab-pane v-bind:disabled="! isLogedIn" icon="md-person-add" label="new user" name="name3">new user</tab-pane>
         </tabs>
     </div>
 
@@ -26,6 +42,37 @@
 <script>
     var vm = new Vue({
         el: "#app",
+        data: {
+            isLogedIn: false,
+            userInfo: {
+                username: "",
+                password: ""
+            },
+            token: '',
+        },
+        methods: {
+            submitForm() {
+                /* alert(this.userInfo.username + " " + this.userInfo.password); */
+                if(this.userInfo.username.length < 3 || this.userInfo.password.length<3){
+                    alert("Unesite bar 3 karaktera za user i pass");
+                    return;
+                }
+                var self = this;
+                var ajax = new XMLHttpRequest();
+                var url = "https://reqres.in/api/login";
+                ajax.onload = function () {
+                    var dataRecived = JSON.parse(ajax.responseText);                    
+                    self.token = dataRecived.token;
+                    /* alert(self.token); */
+                    self.isLogedIn = true;
+                    self.$Message.success(self.userInfo.username + 'je uspesno logovan');
+                };
+                ajax.open('POST',url,true);
+                ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                ajax.send('email='+this.userInfo.username+'&password='+this.userInfo.password);
+            
+            }
+        }
 
 
     });
