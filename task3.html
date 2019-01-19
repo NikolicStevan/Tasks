@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Task3</title>
-    <script src="./vue.js"></script>
+    <!-- import iView -->
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+    <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
 </head>
+
 <body>
-    
+    <div id="app">
+        <tabs value="name1">
+            <tab-pane icon="ios-unlock" label="login" name="name1">login</tab-pane>
+            <tab-pane icon="ios-people" label="users" name="name2">users</tab-pane>
+            <tab-pane icon="md-person-add" label="new user" name="name3">new user</tab-pane>
+        </tabs>
+    </div>
+
 </body>
+
+<script>
+    var vm = new Vue({
+        el: "#app",
+
+
+    });
+
+
+
+</script>
+
 </html>
