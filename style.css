@@ -1,0 +1,27 @@
+body {
+    background-color: rgb(20, 218, 152);
+}
+
+td {
+    padding: 10px;
+    border: 1px solid black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+
+table {
+    margin: 0 auto;
+}
+
+span {
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+border: 1px solid black;
+
+}
+
+#start {
+    padding: 10px;
+    width: 90px;
+    margin-bottom: 15px;
+}
+
