@@ -30,54 +30,103 @@
                     <form-item>
                         <i-button type="primary" @click="submitForm()">Signin</i-button>
                     </form-item>
-                </i-form>            
+                </i-form>
             </tab-pane>
-            <tab-pane v-bind:disabled="! isLogedIn" icon="ios-people" label="users" name="name2">users</tab-pane>
-            <tab-pane v-bind:disabled="! isLogedIn" icon="md-person-add" label="new user" name="name3">new user</tab-pane>
+            <tab-pane v-bind:disabled="! isLogedIn" icon="ios-people" label="users" name="name2">
+                <i-table :columns="columns" :data="userList.data"></i-table>
+                <page @on-change="newPage" :total="userList.total" :page-size="userList.per_page" /> </tab-pane>
+            <tab-pane v-bind:disabled="! isLogedIn" icon="md-person-add" label="new user" name="name3">
+                <i-form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
+                    <form-item label="Name" prop="name">
+                        <i-input v-model="formValidate.name" placeholder="Enter your name"></i-input>
+                    </form-item>
+                    <form-item label="E-mail" prop="mail">
+                        <i-input v-model="formValidate.mail" placeholder="Enter your e-mail"></i-input>
+                    </form-item>
+                    <form-item label="Date">
+                        <date-picker type="date" placeholder="Select date" v-model="formValidate.date"></date-picker>
+                    </form-item>
+                    <form-item>
+                        <i-button type="primary" @click="handleSubmit('formValidate')">Submit</i-button>
+                    </form-item>
+                </i-form>
+            </tab-pane>
         </tabs>
     </div>
-
 </body>
-
-<script>
-    var vm = new Vue({
-        el: "#app",
-        data: {
-            isLogedIn: false,
-            userInfo: {
-                username: "",
-                password: ""
+<script> var vm = new Vue({
+        el: "#app", data:
+            {
+                isLogedIn: false, userInfo: { username: "", password: "" },
+                token: '',
+                userList: {},
+                columns: [{ title: 'id', key: 'id' },
+                { title: 'firstName', key: 'first_name' },
+                { title: 'lastName', key: 'last_name' },
+                { title: 'avatar', key: 'avatar' },
+                {
+                    title: 'action', key: 'action', render: (h, params) => {
+                        return h('div', [h('Button',
+                            {
+                                props: { type: 'primary', size: 'small' }, style: { marginRight: '5px' },
+                                on: { click: () => { vm.editUser(params.index); } }
+                            }, 'edit'),
+                        h('Button', {
+                            props: { type: 'error', size: 'small' },
+                            on: { click: () => { vm.deleteUser(params.index); } }
+                        }, 'delete')]);
+                    }
+                }],
+                formValidate: { name: '', mail: '', date: '', },
+                ruleValidate: {
+                    name: [{
+                        required: true, message: 'The name cannot be empty',
+                        trigger: 'blur'
+                    }], mail: [{
+                        required: true, message: 'Mailbox cannot be empty',
+                        trigger: 'blur'
+                    }, { type: 'email', message: 'Incorrect email format', trigger: 'blur' }], date: [{
+                        required: true, type: 'date',
+                        message: 'Please select the date', trigger: 'change'
+                    }]
+                }
             },
-            token: '',
-        },
         methods: {
-            submitForm() {
-                /* alert(this.userInfo.username + " " + this.userInfo.password); */
-                if(this.userInfo.username.length < 3 || this.userInfo.password.length<3){
+            submitForm() { /* alert(this.userInfo.username + " " + this.userInfo.password); */
+                if (this.userInfo.username.length < 3 || this.userInfo.password.length < 3) {
                     alert("Unesite bar 3 karaktera za user i pass");
                     return;
                 }
-                var self = this;
-                var ajax = new XMLHttpRequest();
+                var self = this; var ajax = new XMLHttpRequest();
                 var url = "https://reqres.in/api/login";
                 ajax.onload = function () {
-                    var dataRecived = JSON.parse(ajax.responseText);                    
-                    self.token = dataRecived.token;
-                    /* alert(self.token); */
+                    var dataRecived = JSON.parse(ajax.responseText);
+                    self.token = dataRecived.token; /* alert(self.token); */
                     self.isLogedIn = true;
                     self.$Message.success(self.userInfo.username + 'je uspesno logovan');
+                    getUserList(self.token, 1);
                 };
-                ajax.open('POST',url,true);
-                ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-                ajax.send('email='+this.userInfo.username+'&password='+this.userInfo.password);
-            
-            }
+                ajax.open('POST', url, true);
+                ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                ajax.send('email=' + this.userInfo.username + '&password=' + this.userInfo.password);
+            },
+            newPage(page) {
+                getUserList(this.token, page);
+            },
+            deleteUser(index) { this.userList.data.splice(index, 1); },
+            editUser(index) { this.$Modal.info({ title: 'User Info', content: `first_name: <input type="text" value=${this.userList.data[index].first_name}><br> last_name: <input type="text" value=${this.userList.data[index].last_name}><br> avatar: <input type="text" value=${this.userList.data[index].avatar}>` }) }, handleSubmit() { this.$Message.info('slanje zahteva ka serveru'); }
         }
-
-
     });
-
-
+    function getUserList(token, page) {
+        var ajax = new XMLHttpRequest();
+        var url = "https://reqres.in/api/users?page=" + page;
+            ajax.onload = function () {
+            vm.userList = JSON.parse(ajax.responseText);
+        };
+        ajax.open('GET', url, true);
+        ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        ajax.send('token=' + token);
+    }
 
 </script>
 
