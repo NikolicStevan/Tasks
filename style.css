@@ -1,5 +1,6 @@
-  @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+   @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
         
+
         /* ZELENA BOJA ZA CHECKBOX OK JE rbg(70, 213, 181); */
 
         * {
@@ -13,6 +14,7 @@
             color: rgba(45, 145, 165, 1)!important;
         }
         
+
         .input-background {
             min-width: 100vw;
             min-height: 100vh;
@@ -31,6 +33,7 @@
             background-color: rgb(33, 150, 243);
         }
         
+
 
         /* MAIN CONTENT */
         .heading-status {
@@ -192,7 +195,7 @@
             height: 30px;
             width: 30px;
             position: absolute;
-            content: '✔';
+            content: '\2713';
             display: inline-block;
             font-size: 20px;
             text-align: center;
@@ -204,49 +207,49 @@
         /* END RADIO INPUT */
 
         /* SUBMIT BUTTON */
-		button {
-		  border: 0;
-		  background: #0087cc;
-		  border-radius: 20px;
-		  box-shadow: 0 5px 0 #006599;
-		  color: #fff;
-		  cursor: pointer;
-		  font: inherit;
-		  margin: 0;
-		  outline: 0;
-		  padding: 10px 30px;
-		  transition: all .1s linear;
-		}
-		button:active {
-		  box-shadow: 0 2px 0 #006599;
-		  transform: translateY(3px);
-		}
-		#submitBtn{
+        button {
+          border: 0;
+          background: #0087cc;
+          border-radius: 20px;
+          box-shadow: 0 5px 0 #006599;
+          color: #fff;
+          cursor: pointer;
+          font: inherit;
+          margin: 0;
+          outline: 0;
+          padding: 10px 30px;
+          transition: all .1s linear;
+        }
+        button:active {
+          box-shadow: 0 2px 0 #006599;
+          transform: translateY(3px);
+        }
+        #submitBtn{
           display: flex;
           align-items: center;
           justify-content: center;
           width: 100%;
-		  text-align: center;
-		}
+          text-align: center;
+        }
         /* END SUBMIT BUTTON */
 
         /* Small devices (portrait tablets and large phones, 600px and up) */
         @media only screen and (min-width: 600px) {
             .input-form {
-                width: 550px; 
+                width: 550px; /* ovo je samo za primer, izmeniti */
             }
         }
 
         /* Large devices (laptops/desktops, 900px and up) */
         @media only screen and (min-width: 900px) {
             .input-form {
-                width: 600px; 
+                width: 600px; /* ovo je samo za primer, izmeniti */
             }
         }
 
         /* Extra large devices (large laptops and desktops, 1200px and up) */
         @media only screen and (min-width: 1200px) {
             .input-form {
-                width: 650px; 
+                width: 650px; /* ovo je samo za primer, izmeniti */
             }
         }
