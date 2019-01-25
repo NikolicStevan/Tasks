@@ -1,0 +1,252 @@
+  @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+        
+        /* ZELENA BOJA ZA CHECKBOX OK JE rbg(70, 213, 181); */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        input[type="text"], input[type="email"] {
+            color: rgba(45, 145, 165, 1)!important;
+        }
+        
+        .input-background {
+            min-width: 100vw;
+            min-height: 100vh;
+            background:linear-gradient(to left top, rgba(45, 145, 165, 1) 0%,  rgba(85, 100, 185, 1) 100%);
+        }
+
+        .input-form {
+            max-width: 500px;
+            width: 100%;
+            background-color: white;
+        }
+
+        .input-form__heading {
+            height: 120px;
+            color: white;
+            background-color: rgb(33, 150, 243);
+        }
+        
+
+        /* MAIN CONTENT */
+        .heading-status {
+            flex:0 0 auto;
+            padding: 0px 20px;
+        }
+        .heading-status > span {
+            width:37px;
+            height:37px;
+            border: 2px solid white;
+            border-radius: 50%;
+            font-size:11px;
+        }
+        .heading-content {
+            flex:1 1 auto;
+        }
+        .heading-content > label {
+            font-size:13px;
+        }
+        .heading-content > p {
+            font-size:20px;
+            padding-top: 2px;
+        }
+        .input-form__item {
+            height:100px;
+            color:gray;
+        }
+        .item-status {
+            flex:0 0 auto;
+            padding: 15px 24px 15px;
+        }
+        .item-status > span {
+            color: rgb(33, 150, 243);
+            width:30px;
+            height:30px;
+            box-shadow: 0px 2px 6px 2px lightgray;
+            border-radius: 50%;
+            font-size:11px;
+            font-weight: 700;
+        }
+        .item-content {
+            flex:1 1 auto;
+            margin:0px 20px 10px 0px;
+        }
+        .item-content > label {
+            font-size:13px;
+        }
+        .item-content > input {
+            font-size:18px;
+            color:gray;
+            margin:5px 0px;
+            border:none!important;
+            outline:none!important;
+        }
+        .item-content > p {
+            font-size: 18px;
+            padding-bottom: 10px;
+        }
+        /* END MAIN CONTENT */
+
+        /* HR LINE */
+        .hr-focus {
+            width:100%!important;
+            opacity: 1;
+            transition: all 0.5s ease;
+        }
+        hr {
+            border-radius: 10px;
+            padding: 0px;
+            margin: 0px;
+            width:0%;
+            height: 3px;
+            background-color: rgba(45, 145, 165, 1);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        /* END HR LINE */
+
+        /* CUSTOM CLASSES */
+        .d-flex {
+            display: flex;
+        }
+        .flex-column {
+            flex-direction: column;
+            }
+        .flex-center {
+            align-items: center;
+            justify-content: center;
+        }
+        .align-center {
+            align-items: center;
+        }
+        .align-end {
+            align-items: flex-end;
+        }
+        .justify-center {
+            justify-content: center;
+        }
+        .justify-end {
+            justify-content: flex-end;
+        }
+        .b-none {
+            border:none!important;
+        }
+        .h-140 {
+            height:140px;
+        }
+        .h-120 {
+            height:120px;
+        }
+        .f-row-reverse {
+            flex-direction: row-reverse;
+        }
+        .w-100 {
+            width:100%;
+        }
+        .b-bottom {
+            border-bottom: 1px solid lightgray;
+        }
+        .status-color-set {
+            background-color: #0087cc;
+            color: white!important;
+            transition: all 0.5s ease;
+        }
+        /* END CUSTOM CLASSES */
+
+        /* RADIO INPUT */
+        .option-input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            -o-appearance: none;
+            appearance: none;
+            position: relative;
+            top: 13px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 30px;
+            width: 30px;
+            transition: all 0.15s ease-out 0s;
+            background: #cbd1d8;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 0.5rem;
+            outline: none;
+            position: relative;
+            z-index: 1000;
+        }
+        .option-input:hover {
+            background: #9faab7;
+        }
+        .option-input:checked {
+            background: #40e0d0;
+        }
+        .option-input:checked::before {
+            height: 30px;
+            width: 30px;
+            position: absolute;
+            content: '✔';
+            display: inline-block;
+            font-size: 20px;
+            text-align: center;
+            line-height: 30px;
+        }
+        .option-input.radio {
+            border-radius: 50%;
+        }
+        /* END RADIO INPUT */
+
+        /* SUBMIT BUTTON */
+		button {
+		  border: 0;
+		  background: #0087cc;
+		  border-radius: 20px;
+		  box-shadow: 0 5px 0 #006599;
+		  color: #fff;
+		  cursor: pointer;
+		  font: inherit;
+		  margin: 0;
+		  outline: 0;
+		  padding: 10px 30px;
+		  transition: all .1s linear;
+		}
+		button:active {
+		  box-shadow: 0 2px 0 #006599;
+		  transform: translateY(3px);
+		}
+		#submitBtn{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+		  text-align: center;
+		}
+        /* END SUBMIT BUTTON */
+
+        /* Small devices (portrait tablets and large phones, 600px and up) */
+        @media only screen and (min-width: 600px) {
+            .input-form {
+                width: 550px; 
+            }
+        }
+
+        /* Large devices (laptops/desktops, 900px and up) */
+        @media only screen and (min-width: 900px) {
+            .input-form {
+                width: 600px; 
+            }
+        }
+
+        /* Extra large devices (large laptops and desktops, 1200px and up) */
+        @media only screen and (min-width: 1200px) {
+            .input-form {
+                width: 650px; 
+            }
+        }
