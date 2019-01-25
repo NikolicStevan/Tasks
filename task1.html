@@ -7,99 +7,58 @@
     <title>Test</title>
     <!-- jQuery 3.3.1 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="style.css">
 
-    <script>
-        $(document).ready(function(){
-
-            $("input[type='text']").on("focus", function(){
-                $(this).siblings("hr").addClass("hr-focus");
-                $(this).parent(".item-content").removeClass("b-bottom");
-            });
-            $("input[type='text']").on("blur", function(){
-                var a = this.value;
-                if (a == 0) {
-                    $(this).siblings("hr").removeClass("hr-focus");
-                    $(this).parent(".item-content").addClass("b-bottom");
-                    $(this).parent(".item-content").siblings(".item-status").children("span").removeClass("status-color-set");
-                } else {
-                    $(this).parent(".item-content").siblings(".item-status").children("span").addClass("status-color-set");
-                }
-            });
-
-            $("input[type='email']").on("focus", function(){
-                $(this).siblings("hr").addClass("hr-focus");
-                $(this).parent(".item-content").removeClass("b-bottom");
-            });
-            $("input[type='email']").on("blur", function(){
-                var a = this.value;
-                if (a == 0) {
-                    $(this).siblings("hr").removeClass("hr-focus");
-                    $(this).parent(".item-content").addClass("b-bottom");
-                    $(this).parent(".item-content").siblings(".item-status").children("span").removeClass("status-color-set");
-                } else {
-                    $(this).parent(".item-content").siblings(".item-status").children("span").addClass("status-color-set");
-                }
-            });
-
-            $('input[type="radio"]').change(function(){
-                if ($(this).is(':checked')) {
-                     $("#for-radio-check").addClass("status-color-set");
-                } else {
-                    $("#for-radio-check").removeClass("status-color-set");
-                }
-            });
-        });
-    </script>
+    <script src='main.js'></script>
 </head>
 <body>
-	<div class="input-background d-flex flex-center">
-		<div class="input-form">
-			<form action="#">
-				<div class="input-form__heading d-flex">
-					<div class="heading-status d-flex flex-center">
-						<span class="d-flex flex-center">100%</span>
-					</div>
-					<div class="heading-content d-flex flex-column justify-center">
-						<label>New York State</label>
-						<p>Request for Contact</p>
-					</div>
-				</div>
-				<div class="input-form__item d-flex">
-					<div class="item-status d-flex align-end">
-						<span class="d-flex flex-center">1</span>
-					</div>
-					<div class="item-content b-bottom d-flex flex-column justify-end">
+    <div class="input-background d-flex flex-center">
+        <div class="input-form">
+            <form action="#">
+                <div class="input-form__heading d-flex">
+                    <div class="heading-status d-flex flex-center">
+                        <span id="percentage" class="d-flex flex-center">0%</span>
+                    </div>
+                    <div class="heading-content d-flex flex-column justify-center">
+                        <label>New York State</label>
+                        <p>Request for Contact</p>
+                    </div>
+                </div>
+                <div class="input-form__item d-flex">
+                    <div class="item-status d-flex align-end">
+                        <span class="d-flex flex-center">1</span>
+                    </div>
+                    <div class="item-content b-bottom d-flex flex-column justify-end">
                         <label>First Name</label> <input type="text" required>
                         <hr class="">
-					</div>
-				</div>
-				<div class="input-form__item d-flex">
-					<div class="item-status d-flex align-end">
-						<span class="d-flex flex-center">2</span>
-					</div>
-					<div class="item-content b-bottom d-flex flex-column justify-end">
+                    </div>
+                </div>
+                <div class="input-form__item d-flex">
+                    <div class="item-status d-flex align-end">
+                        <span class="d-flex flex-center">2</span>
+                    </div>
+                    <div class="item-content b-bottom d-flex flex-column justify-end">
                         <label>Last Name</label> <input type="text" required>
                         <hr class="">
-					</div>
-				</div>
-				<div class="input-form__item d-flex">
-					<div class="item-status d-flex align-end">
-						<span class="d-flex flex-center">3</span>
-					</div>
-					<div class="item-content b-bottom d-flex flex-column justify-end">
+                    </div>
+                </div>
+                <div class="input-form__item d-flex">
+                    <div class="item-status d-flex align-end">
+                        <span class="d-flex flex-center">3</span>
+                    </div>
+                    <div class="item-content b-bottom d-flex flex-column justify-end">
                         <label>Email Address</label> <input type="email" required>
                         <hr class="">
-					</div>
-				</div>
-				<div class="input-form__item h-140 d-flex">
-					<div class="item-status d-flex align-center">
-						<span id="for-radio-check" class="d-flex flex-center">4</span>
-					</div>
-					<div
-						class="item-content h-140 d-flex flex-column justify-end b-none">
-						<p>What is the best time to contact you?</p>
-						<div class="d-flex flex-column">
+                    </div>
+                </div>
+                <div class="input-form__item h-140 d-flex">
+                    <div class="item-status d-flex align-center">
+                        <span id="for-radio-check" class="d-flex flex-center">4</span>
+                    </div>
+                    <div
+                        class="item-content h-140 d-flex flex-column justify-end b-none">
+                        <p>What is the best time to contact you?</p>
+                        <div class="d-flex flex-column">
                             <label>
                               <input type="radio" class="option-input radio scale-up-center" name="example">
                               Monday 3pm
@@ -109,19 +68,19 @@
                               Tuesday 3pm
                             </label>
                           </div>
-					</div>
-				</div>
-				<div class="input-form__item d-flex h-140">
-					<div class="item-status d-flex w-100">
+                    </div>
+                </div>
+                <div class="input-form__item d-flex h-140">
+                    <div class="item-status d-flex w-100">
                         <form action="#">
                             <div id="submitBtn">
                                 <button type="submit" name="submit">Submit</button>
                             </div>
                         </form>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
